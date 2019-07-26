@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row p-margin-top ">
+        <div class="col">
+            <mat-card style="min-height:400px">
+                <div>
+                    <div>
+                        <p>Départ hier</p>
+                    </div>
+                    <div class="p-right-float">
+                        <a (click)="openDialog()" class="btn btn-info">Nouveau Courrier</a>
+                    </div>
+                    <mat-divider></mat-divider>
+
+                </div>
+
+                <div>
+                    <mat-table #table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="reference">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Reference </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.reference}} </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="cachet">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Cachet </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.cachet}} </mat-cell>
+                        </ng-container>
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="dateDepot">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Date Depot </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.datedepot | date:'dd/MM/yyyy'}} </mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="dateRetrait">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Date Retrait </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.dateretrait | date:'dd/MM/yyyy'}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="signature">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Signature </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.signature}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+                    </mat-paginator>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col">
+            <mat-card>
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+
+                    <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+                        <agm-info-window>
+                            <strong>InfoWindow content</strong>
+                        </agm-info-window>
+
+                    </agm-marker>
+
+                    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+                    </agm-circle>
+
+                </agm-map>
+            </mat-card>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="col" style="padding-top: 20px">
+            <mat-card>
+                <div>
+                    <div style="display: block">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                    <!-- <button (click)="randomize()">Update</button> -->
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="col" style="padding-top: 20px">
+            <mat-card>
+                <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+            </mat-card>
+        </div>
+    </div>
+</div>

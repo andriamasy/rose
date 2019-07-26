@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Suppression courrier départ</h1>
+<div mat-dialog-content>
+    <p>Vou voulez vraiment supprimer ce courrier?</p>
+</div>
+<div mat-dialog-actions>
+    <button class="btn-primary" mat-button [mat-dialog-close]>Annuler</button>
+    <button class="btn-danger" mat-button (click)="onSupprimer()" cdkFocusInitial>Oui</button>
+</div>

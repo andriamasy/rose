@@ -1,0 +1,80 @@
+<div class="p-right-float">
+    <a (click)="openDialog()" class="btn btn-info">Nouveau Courrier Arriver</a>
+</div>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef class="mat-column-checkbox">
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="mat-column-checkbox">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <!--code courrier courrier-->
+        <ng-container matColumnDef="codecourrier">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Code Courrier</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.codecourrier}} </mat-cell>
+        </ng-container>
+
+        <!-- nom courrier Column -->
+        <ng-container matColumnDef="nom">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom courrier </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.courrier.courrier_objet}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="destinateur">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom destinateur </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.courrier.nom_destinateur}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nomExpediteur">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom Expediteur </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.courrier.expediteur.nom}} </mat-cell>
+        </ng-container>
+        <!-- adresse expediteur Column -->
+        <ng-container matColumnDef="adressexpediteur">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Adresse expediteur </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.courrier.expediteur.adresse }}</mat-cell>
+        </ng-container>
+
+        <!-- date depot Column -->
+        <ng-container matColumnDef="datedepot">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date de rétrait </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.datedepot | date:'dd/MM/yyyy'}} </mat-cell>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+                Actions
+            </mat-header-cell>
+            <mat-cell *matCellDef="let product">
+                <a [routerLink]="['/ecommerce/products/edit']" [queryParams]="{id: product.id}" mat-icon-button color="primary" matTooltip="Modifier Courrier">
+                    <mat-icon>create</mat-icon>
+                </a>&nbsp;
+                <button mat-icon-button color="warn" type="button" matTooltip="Supprimer courrier">
+        <mat-icon>delete</mat-icon>
+      </button>&nbsp;
+                <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Plus Actions">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item type="button">
+          <mat-icon>subject</mat-icon>
+          <span>Remarks</span>
+        </button>
+                    <button mat-menu-item type="button">
+          <mat-icon>assignment</mat-icon>
+          <span>Specifications</span>
+        </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    </mat-paginator>
+</div>

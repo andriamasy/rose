@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~material-icons/iconfont/material-icons.css";
+.ps .ps__scrollbar-y-rail {
+    left: 3px;
+    right: auto;
+}
+
+.topbar {
+    background: rgb(253, 212, 0) !important;
+}
+
+.sidebar-nav>ul>li>a {
+    color: #ef5350 !important;
+}
+
+.sidebar-nav>ul>li>a i {
+    color: #ef5350 !important;
+}
+
+table {
+    width: 100%;
+}
+
+.paositra-container {
+    background-color: #fff;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.search-right {
+    width: auto;
+    float: right;
+}
+
+.paositra-card-header {
+    background-color: #fff;
+    padding: 1rem 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ebedf2;
+    height: 3.1rem;
+    display: flex;
+}
+
+.paositra-card-body {
+    background-color: #fff;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.p-margin-top {
+    margin-top: 1.2rem;
+}
+
+.p-height-2 {
+    height: 5rem;
+}
+
+.p-right-float {
+    /* float: right; */
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.login-logo {
+    background-image: url("./assets/images/Logo-mini.jpg")
+}
+
+.btn-info {
+    color: #fff !important
+}
+
+.example-form {
+    min-width: 150px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+agm-map {
+    height: 300px;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #ef5350
+}
+
+.btn-primary {
+    background: rgb(204, 171, 9) !important;
+    border: rgba(204, 171, 9) !important;
+}
+
+.search {
+    margin-right: 2em;
+}

@@ -1,0 +1,64 @@
+<div class="container">
+  <mat-card>
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()"  class="example-form">
+      <div class="row">
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="firstname" matInput placeholder="Nom" >
+              </mat-form-field>
+          </div>
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="lastName" matInput placeholder="Prénom" >
+              </mat-form-field>
+          </div>
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="adresse" matInput placeholder="Adresse" >
+              </mat-form-field>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="phoneNumber" matInput placeholder="Numero Telephone" >
+              </mat-form-field>
+          </div>
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="email" matInput placeholder="Adresse Email" >
+              </mat-form-field>
+          </div>
+          <div class="col-4">
+              <mat-form-field>
+                  <input formControlName="poste" matInput placeholder="Poste" >
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <mat-form-field class="input-element-add-personnel">
+                  <input formControlName="dateEmbauche" matInput [matDatepicker]="picker" placeholder="Date d'embauche" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+          </div>
+
+      </div>
+      <div class="row role">
+        <div class="col-6">
+            <h5>Gestion Roles</h5>
+
+            <label class="roles-liste" formArrayName="roles" *ngFor="let role of createForm.controls.roles.controls; let i = index">
+                <mat-checkbox [formControlName]="i"> {{roles[i].name}}</mat-checkbox>
+            </label>
+        </div>
+       </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-info">Enregistrer</button>
+          <a [routerLink]="['/paositra/personnel/list']"  class="btn btn-danger">Fermer</a>
+      </div>
+      </form>
+  </mat-card>
+</div>

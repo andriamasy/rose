@@ -1,0 +1,33 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field>
+        <mat-select formControlName="courriers" placeholder="Selectionner Courrier">
+            <mat-option *ngFor="let courrier of courriers" [value]="courrier.id">{{courrier.courrier_objet}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-select formControlName="cachet" placeholder="Cachet">
+            <mat-option [value]="1">Oui</mat-option>
+            <mat-option [value]="0">Non</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput formControlName="dateRetrait" [matDatepicker]="picker" placeholder="Date " (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput formControlName="reference" placeholder="Reference" [ngClass]="{ 'is-invalid': submitted && f.reference.errors }">
+        <!-- <div *ngIf="submitted && f.destinateur.errors">
+            <div *ngIf="f.destinateur.errors.required">Veulliez rempli ce champ SVP</div>
+        </div> -->
+    </mat-form-field>
+
+    <mat-checkbox formControlName="signature">Signature</mat-checkbox>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">Enregistrer</button>
+        <button type="button" class="btn btn-danger" (click)="fermer()">Fermer</button>
+    </div>
+
+</form>
