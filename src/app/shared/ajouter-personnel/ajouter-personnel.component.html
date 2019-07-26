@@ -1,0 +1,39 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()"  class="example-form">
+    <div class="modal-header">
+        <h4>Ajouter personnel</h4>
+    </div>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="firstname" placeholder="Nom" >
+    <!-- <div *ngIf="submitted && f.objet.errors" class="invalid-feedback">
+        <div *ngIf="f.objet.errors.required">Veulliez rempli ce champ SVP</div>
+    </div> -->
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="lastName" placeholder="Prenom" >
+    <!-- <div *ngIf="submitted && f.destinateur.errors">
+        <div *ngIf="f.destinateur.errors.required">Veulliez rempli ce champ SVP</div>
+    </div> -->
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="adresse" placeholder="Adresse" >
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="phoneNumber" placeholder="Numero Telephone" >
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="email" placeholder="Adresse Email" >
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput formControlName="poste" placeholder="Poste" >
+  </mat-form-field>
+  <mat-form-field class="input-element-add-personnel">
+    <input matInput [matDatepicker]="picker" placeholder="Date d'embauche" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-info">Enregistrer</button>
+      <button type="button" class="btn btn-danger" (click)="fermer()">Fermer</button>
+  </div>
+ 
+</form>

@@ -1,0 +1,9 @@
+.row.role {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+label.roles-liste {
+    display: block;
+    margin-left: 20px;
+}

@@ -1,0 +1,25 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()"  class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput formControlName="objet" placeholder="Nom Objet" [ngClass]="{ 'is-invalid': submitted && f.objet.errors }">
+    <!-- <div *ngIf="submitted && f.objet.errors" class="invalid-feedback">
+        <div *ngIf="f.objet.errors.required">Veulliez rempli ce champ SVP</div>
+    </div> -->
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput formControlName="destinateur" placeholder="Nom destinateur" [ngClass]="{ 'is-invalid': submitted && f.destinateur.errors }">
+    <!-- <div *ngIf="submitted && f.destinateur.errors">
+        <div *ngIf="f.destinateur.errors.required">Veulliez rempli ce champ SVP</div>
+    </div> -->
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select formControlName="expediteur" placeholder="--Selectionner expediteur--">
+        <mat-option  *ngFor="let expediteur of expediteurs" [value]="expediteur.id">{{expediteur.nom}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-info">Enregistrer</button>
+      <button type="button" class="btn btn-danger" (click)="fermer()">Fermer</button>
+  </div>
+ 
+</form>

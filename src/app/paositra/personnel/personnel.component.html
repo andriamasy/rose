@@ -1,0 +1,109 @@
+<div>
+  <div class="paositra-container">
+    <mat-form-field>
+      <mat-select placeholder="Action">
+        <mat-option *ngFor="let action of actions" [value]="action.value">
+          {{action.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    
+
+    <div class="search-right">
+      <div class="add-personnel">
+        <a class="btn btn-info" (click)="addPersonnel()">Nouveau Personnel</a>
+      </div>
+      <div class="recherche-personnel">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Recherche..." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef class="mat-column-checkbox">
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="mat-column-checkbox">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="firtname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
+      </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="poste">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Poste </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fonction}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Télephone </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.telephone}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="adresse">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.adresse}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date_hiring">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date d'embauche </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date_hiring }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          Actions
+        </mat-header-cell>
+        <mat-cell *matCellDef="let personnel">
+          <a [routerLink]="['/paositra/personnel/edit', personnel.id]" mat-icon-button color="primary" matTooltip="Modifier ce personnel">
+            <mat-icon>create</mat-icon>
+          </a>&nbsp;
+          <button mat-icon-button color="warn" type="button" matTooltip="Supprimer ce personnel">
+            <mat-icon>delete</mat-icon>
+          </button>&nbsp;
+          <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="plus Action">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item type="button">
+              <mat-icon>info</mat-icon>
+              <span>Détail</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    </mat-paginator>
+  </div>
+
+
+</div>

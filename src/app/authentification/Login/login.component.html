@@ -1,0 +1,35 @@
+<div class="wrapper">
+  <header class="header">
+    <a href="#" class="logo">
+      <img aria-hidden="true" class="octicon octicon-mark-github login-logo" height="48" version="1.1" viewBox="0 0 16 16" width="48">
+    </a>
+    <h1>Gestion Courrier Paositra</h1>
+  </header>
+  
+  <form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+    <label for="user">
+      Addresse email
+      <input class="field" type="text" formControlName="username" autofocus [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Username is required</div>
+      </div>
+    </label>
+    <label for="password">
+      Mot de passe <span><a href="#">Mot de passe oublier?</a></span>
+      <input class="field" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+    </label>
+    
+    <input class="button" type="submit" value="Connexion">
+    
+  </form>
+  <footer class="footer-login">
+    <ul>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Security</a></li>
+      <li><a href="#">Contact Admin</a></li>
+    </ul>
+  </footer>

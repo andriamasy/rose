@@ -1,0 +1,19 @@
+<input
+  type="search"
+  placeholder="Recherche de place"
+  autocomplete="on"
+  autocapitalize="off"
+  autofocus
+  #search
+  (keyup)="onSearch(search.value)"
+/>
+
+<p>{{ searchTerm }}</p>
+
+<ul>
+  <li *ngFor="let result of googlePlacesResults">
+    <p>{{ result.description }}</p>
+  </li>
+</ul>
+
+<agm-map [latitude]="lat" [longitude]="lng" [minZoom]="2" [styles]="style_map" [zoom]="5" ></agm-map>
